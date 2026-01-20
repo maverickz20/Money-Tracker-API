@@ -67,6 +67,29 @@ python manage.py runserver
 
 Server `http://127.0.0.1:8000/` da ishga tushadi.
 
+## 👥 Test Userlar
+
+Loyihada allaqachon 4 ta test user yaratilgan va to'liq ma'lumotlar bilan to'ldirilgan:
+
+| # | Ism | Username | Email | Telefon | Parol |
+|---|-----|----------|-------|---------|-------|
+| 1 | Ali Karimov | `ali_karimov` | ali.karimov@example.uz | +998901234567 | `TestPass123!` |
+| 2 | Madina Rashidova | `madina_rashidova` | madina.rashidova@example.uz | +998907654321 | `TestPass123!` |
+| 3 | Sardor Aliyev | `sardor_aliyev` | sardor.aliyev@example.uz | +998909876543 | `TestPass123!` |
+| 4 | Dilnoza Yusupova | `dilnoza_yusupova` | dilnoza.yusupova@example.uz | +998905555555 | `TestPass123!` |
+
+**Barcha test userlar uchun parol:** `TestPass123!`
+
+### Test ma'lumotlar
+
+Har bir test user quyidagilarga ega:
+- ✅ To'liq profil (telefon, manzil, bio)
+- ✅ 3 ta karta (turli valyutalarda: UZS, USD, EUR)
+- ✅ 13 ta kategoriya (5 ta daromad, 8 ta xarajat)
+- ✅ 40-60 ta tranzaksiya (so'ngi 60 kun uchun)
+
+Ushbu test userlar orqali darhol API ni sinab ko'rishingiz mumkin!
+
 ## API Dokumentatsiya
 
 API dokumentatsiyasini quyidagi manzillarda ko'rishingiz mumkin:
@@ -79,13 +102,12 @@ API dokumentatsiyasini quyidagi manzillarda ko'rishingiz mumkin:
 
 ### Authentication
 
-- `POST /api/auth/register/` - Ro'yxatdan o'tish
-- `POST /api/auth/login/` - Login (JWT token olish)
-- `POST /api/auth/token/refresh/` - Token yangilash
-- `POST /api/auth/logout/` - Logout
-- `GET /api/auth/me/` - Hozirgi user ma'lumoti
-- `GET/PUT/PATCH /api/auth/profile/` - Profil boshqaruvi
-- `POST /api/auth/change-password/` - Parol o'zgartirish
+- `POST /api/accounts/register/` - Ro'yxatdan o'tish
+- `POST /api/accounts/login/` - Login (JWT token olish)
+- `POST /api/accounts/token/refresh/` - Token yangilash
+- `GET /api/accounts/profile/` - Profil ma'lumoti
+- `PUT /api/accounts/profile/update/` - Profil yangilash
+- `POST /api/accounts/change-password/` - Parol o'zgartirish
 
 ### Cards
 
@@ -119,7 +141,7 @@ API dokumentatsiyasini quyidagi manzillarda ko'rishingiz mumkin:
 ### 1. Ro'yxatdan o'tish
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/auth/register/ \
+curl -X POST http://127.0.0.1:8000/api/accounts/register/ \
   -H "Content-Type: application/json" \
   -d '{
     "username": "john_doe",
@@ -134,11 +156,11 @@ curl -X POST http://127.0.0.1:8000/api/auth/register/ \
 ### 2. Login
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/auth/login/ \
+curl -X POST http://127.0.0.1:8000/api/accounts/login/ \
   -H "Content-Type: application/json" \
   -d '{
-    "username": "john_doe",
-    "password": "SecurePass123!"
+    "username": "ali_karimov",
+    "password": "TestPass123!"
   }'
 ```
 
@@ -308,4 +330,3 @@ Savollar yoki muammolar bo'lsa, issue ochishingiz mumkin.
 ## Litsenziya
 
 MIT License
-# Money-Tracker-API
